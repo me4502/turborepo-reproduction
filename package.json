@@ -1,0 +1,10 @@
+{
+  "name": "turborepo-reproduction",
+  "packageManager": "yarn@4.4.0",
+  "workspaces": [
+    "workspaces/*"
+  ],
+  "devDependencies": {
+    "turbo": "^2.0.12"
+  }
+}

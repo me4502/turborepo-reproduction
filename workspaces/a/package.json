@@ -1,0 +1,14 @@
+{
+  "name": "a",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo \"built a\"",
+    "build:turbo": "yarn turbo build"
+  },
+  "dependencies": {
+    "buffer": "npm:buffer@6.0.3"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.12"
+  }
+}
