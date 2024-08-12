@@ -9,6 +9,6 @@
     "buffer": "npm:buffer@6.0.3"
   },
   "devDependencies": {
-    "turbo": "^2.0.12"
+    "turbo": "2.0.12-canary.3"
   }
 }
