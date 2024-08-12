@@ -13,3 +13,4 @@
 .pnp.*
 
 .turbo/
+node_modules/
