@@ -9,8 +9,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "a@workspace:workspaces/a"
   dependencies:
-    buffer: "npm:buffer@6.0.3"
-    turbo: "npm:2.0.12-canary.3"
+    b: "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"b@workspace:*, b@workspace:workspaces/b":
+  version: 0.0.0-use.local
+  resolution: "b@workspace:workspaces/b"
+  dependencies:
+    buffer: "npm:6.0.3"
+  peerDependencies:
+    buffer: "workspace:~"
   languageName: unknown
   linkType: soft
 
@@ -21,7 +30,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer@npm:buffer@6.0.3":
+"buffer@npm:6.0.3":
   version: 6.0.3
   resolution: "buffer@npm:6.0.3"
   dependencies:
@@ -34,6 +43,23 @@ __metadata:
 "buffer@workspace:workspaces/buffer":
   version: 0.0.0-use.local
   resolution: "buffer@workspace:workspaces/buffer"
+  dependencies:
+    d: "workspace:*"
+    e: "workspace:*"
+  peerDependencies:
+    d: "workspace:~"
+  languageName: unknown
+  linkType: soft
+
+"d@workspace:*, d@workspace:workspaces/d":
+  version: 0.0.0-use.local
+  resolution: "d@workspace:workspaces/d"
+  languageName: unknown
+  linkType: soft
+
+"e@workspace:*, e@workspace:workspaces/e":
+  version: 0.0.0-use.local
+  resolution: "e@workspace:workspaces/e"
   languageName: unknown
   linkType: soft
 
@@ -44,58 +70,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.0.12-canary.3":
-  version: 2.0.12-canary.3
-  resolution: "turbo-darwin-64@npm:2.0.12-canary.3"
+"turbo-darwin-64@npm:2.8.11":
+  version: 2.8.11
+  resolution: "turbo-darwin-64@npm:2.8.11"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.0.12-canary.3":
-  version: 2.0.12-canary.3
-  resolution: "turbo-darwin-arm64@npm:2.0.12-canary.3"
+"turbo-darwin-arm64@npm:2.8.11":
+  version: 2.8.11
+  resolution: "turbo-darwin-arm64@npm:2.8.11"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.0.12-canary.3":
-  version: 2.0.12-canary.3
-  resolution: "turbo-linux-64@npm:2.0.12-canary.3"
+"turbo-linux-64@npm:2.8.11":
+  version: 2.8.11
+  resolution: "turbo-linux-64@npm:2.8.11"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.0.12-canary.3":
-  version: 2.0.12-canary.3
-  resolution: "turbo-linux-arm64@npm:2.0.12-canary.3"
+"turbo-linux-arm64@npm:2.8.11":
+  version: 2.8.11
+  resolution: "turbo-linux-arm64@npm:2.8.11"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.0.12-canary.3":
-  version: 2.0.12-canary.3
-  resolution: "turbo-windows-64@npm:2.0.12-canary.3"
+"turbo-windows-64@npm:2.8.11":
+  version: 2.8.11
+  resolution: "turbo-windows-64@npm:2.8.11"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.0.12-canary.3":
-  version: 2.0.12-canary.3
-  resolution: "turbo-windows-arm64@npm:2.0.12-canary.3"
+"turbo-windows-arm64@npm:2.8.11":
+  version: 2.8.11
+  resolution: "turbo-windows-arm64@npm:2.8.11"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:2.0.12-canary.3":
-  version: 2.0.12-canary.3
-  resolution: "turbo@npm:2.0.12-canary.3"
+"turbo@npm:2.8.11":
+  version: 2.8.11
+  resolution: "turbo@npm:2.8.11"
   dependencies:
-    turbo-darwin-64: "npm:2.0.12-canary.3"
-    turbo-darwin-arm64: "npm:2.0.12-canary.3"
-    turbo-linux-64: "npm:2.0.12-canary.3"
-    turbo-linux-arm64: "npm:2.0.12-canary.3"
-    turbo-windows-64: "npm:2.0.12-canary.3"
-    turbo-windows-arm64: "npm:2.0.12-canary.3"
+    turbo-darwin-64: "npm:2.8.11"
+    turbo-darwin-arm64: "npm:2.8.11"
+    turbo-linux-64: "npm:2.8.11"
+    turbo-linux-arm64: "npm:2.8.11"
+    turbo-windows-64: "npm:2.8.11"
+    turbo-windows-arm64: "npm:2.8.11"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -111,7 +137,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10c0/bd7d6bc2039abca6e43d132583e4f008e1e87b452fb7f4f5dbf99fc42f2b8c5880c3e0c4202f94c6017e3b787ce07b87254e9c030cfd225a1b91e46c79af86cf
+  checksum: 10c0/9c74e4c1494494ee3118c232d2136dfbfd15faf203d433ee73392c57acde43395f8095c8d05fd1d56b5ba58295fe7562ad6c6b9a767f2c86091833bcc53f726e
   languageName: node
   linkType: hard
 
@@ -119,6 +145,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "turborepo-reproduction@workspace:."
   dependencies:
-    turbo: "npm:2.0.12-canary.3"
+    turbo: "npm:2.8.11"
   languageName: unknown
   linkType: soft

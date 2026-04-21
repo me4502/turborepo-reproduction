@@ -4,7 +4,10 @@
   "workspaces": [
     "workspaces/*"
   ],
+  "scripts": {
+    "build:turbo": "yarn turbo run build --filter=a"
+  },
   "devDependencies": {
-    "turbo": "2.0.12-canary.3"
+    "turbo": "2.8.11"
   }
 }

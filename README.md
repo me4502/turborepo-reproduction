@@ -1,34 +1,41 @@
 ## Turborepo issue reproduction
 
-This repo is a reproduction for a Turborepo issue, where it incorrectly builds workspaces when an npm package of the same name is used in a workspace. While the setup shown in the reproduction is fairly silly, this is mostly for simplicity of demonstration. This is mostly relevant in repos that have FFI packages that are built in specialised CI environments and always accessed via npm rather than from source.
+This repo reproduces a Turborepo regression where `peerDependencies` create unexpected
+workspace build edges.
 
-The actual bug here is present in workspace `a`, where the dependency of `buffer`, using the `npm:` protocol from Yarn, inadvertently triggers a build of the other workspace titled `buffer`, despite that workspace _not_ being a dependency of it.
+The shape is:
+
+- `a` depends on local workspace `b`
+- `b` has a concrete dependency on published `buffer@6.0.3`
+- `b` also has a `peerDependency` on local workspace `buffer`
+- local `buffer` then pulls in local `d` and `e`
+
+With the broken Turbo version, building `a` incorrectly walks the peer edge and builds:
+
+- `buffer`
+- `d`
+- `e`
+
+even though `a` only depends on `b`, and `b`'s concrete `buffer` dependency is the
+published npm package.
 
 ### Steps to reproduce
 
 1. Clone this repo
 2. Run `yarn` in the root of the repo
-3. `cd` to `workspaces/a`
-4. Run `yarn build:turbo`
+3. Run `yarn build:turbo`
 
-You'll note that the following output will display,
+Expected behavior:
 
-```
-turbo 2.0.12
+- Only `b` and `a` should build
 
-• Packages in scope: a
-• Running build in 1 packages
-• Remote caching disabled
-buffer:build: cache miss, executing 1b2dac6fa4b10094
-buffer:build:
-buffer:build: built buffer
-a:build: cache miss, executing 6244eed3a659492f
-a:build:
-a:build: built a
+Broken behavior on Turbo `2.8.11`+:
 
- Tasks:    2 successful, 2 total
-Cached:    0 cached, 2 total
-  Time:    456ms
-```
+- `buffer`, `d`, and `e` also build
 
-As can be seen, the buffer workspace's `build` script has been incorrectly run, despite it not being a dependency of the `a` workspace.
+The regression window in the real repo is:
+
+- good: `2.8.11-canary.1`
+- bad: `2.8.11-canary.2`
+
+I believe the cause is this line, https://github.com/vercel/turborepo/commit/9deb87b798cc02490820fa2e2d5e80a733d644e2#diff-33c89286f9ef56960c175369a939b24370968f01000cc5db41b7c28a678680beR210

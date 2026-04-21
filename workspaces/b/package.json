@@ -1,0 +1,14 @@
+{
+  "name": "b",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo \"built b\"",
+    "build:turbo": "yarn turbo run build --filter=b"
+  },
+  "devDependencies": {
+    "buffer": "6.0.3"
+  },
+  "peerDependencies": {
+    "buffer": "workspace:~"
+  }
+}
